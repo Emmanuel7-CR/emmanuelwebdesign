@@ -1,0 +1,15 @@
+# ══════════════════════════════════════════════
+# robots.txt — Emmanuel Website Design
+# https://emmanuelwebdesign.netlify.app
+# ══════════════════════════════════════════════
+
+# Allow all well-behaved crawlers full access
+User-agent: *
+Allow: /
+
+# Block access to any utility or config files
+Disallow: /script.js
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://emmanuelwebdesign.netlify.app/sitemap.xml
