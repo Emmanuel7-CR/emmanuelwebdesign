@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Projects | Emmanuel Website Design Portfolio</title>
+  <meta name="description" content="Browse the full portfolio of Emmanuel — professional website designer. View completed business websites, landing pages, portfolio sites, e-commerce stores, and website redesigns." />
+  <meta name="author" content="Emmanuel | Website Design" />
+  <link rel="canonical" href="https://emmanuelwebdesign.com/projects.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* ── PROJECTS PAGE SPECIFIC STYLES ── */
+    .projects-hero {
+      background: var(--bg-base);
+      padding: 140px 0 70px;
+      position: relative;
+      overflow: hidden;
+    }
+    .projects-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.3;
+    }
+    .projects-hero-glow {
+      position: absolute;
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse at center, var(--accent-dim), transparent);
+      top: 0; right: -100px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .projects-hero .container { position: relative; z-index: 1; }
+
+    .projects-hero-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+    .projects-hero-back:hover { color: var(--accent); }
+
+    .projects-hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+    .projects-hero p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 520px;
+    }
+
+    /* Filter tabs */
+    .projects-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+    .filter-btn {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.45rem 1.1rem;
+      border-radius: 50px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0A0A0B;
+    }
+
+    /* Projects grid */
+    .projects-grid-section {
+      background: var(--bg-surface);
+      padding: 70px 0 100px;
+    }
+
+    .project-count {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+    .project-count span { color: var(--accent); font-weight: 600; }
+
+    /* Large featured card (first item) */
+    .portfolio-card--featured {
+      display: flex;
+      flex-direction: row !important;
+      min-height: 280px;
+    }
+    .portfolio-card--featured .browser-mockup {
+      flex: 0 0 55%;
+      height: auto;
+      border-right: 1px solid var(--border);
+      border-bottom: none;
+    }
+    .portfolio-card--featured .browser-screen {
+      height: 100%;
+      min-height: 230px;
+    }
+    .portfolio-card--featured .portfolio-info {
+      flex: 1;
+      padding: 2rem;
+      justify-content: center;
+    }
+    .portfolio-card--featured .portfolio-info h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+    .portfolio-card--featured .portfolio-info p {
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+    .featured-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .featured-badge i { font-size: 0.8rem; }
+
+    @media (max-width: 767px) {
+      .portfolio-card--featured {
+        flex-direction: column !important;
+      }
+      .portfolio-card--featured .browser-mockup {
+        flex: none;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .portfolio-card--featured .browser-screen {
+        height: 200px;
+        min-height: unset;
+      }
+    }
+
+    /* Result stats on cards */
+    .portfolio-result {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: #22C55E;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .portfolio-result i { font-size: 0.9rem; }
+
+    /* Tech stack tags */
+    .portfolio-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+    .tech-tag {
+      font-size: 0.68rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-muted);
+    }
+
+    /* Hidden items (filtered out) */
+    .portfolio-card[data-hidden="true"] {
+      display: none;
+    }
+
+    /* CTA Section */
+    .projects-cta {
+      background: var(--bg-base);
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .projects-cta::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse at center, var(--accent-dim), transparent);
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .projects-cta .container { position: relative; z-index: 1; }
+    .projects-cta h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; margin-bottom: 1rem; }
+    .projects-cta p { color: var(--text-secondary); max-width: 500px; margin: 0 auto 2rem; font-size: 1.05rem; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg sticky-top" id="mainNav" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand" href="index.html" aria-label="Emmanuel Website Design — Home">
+        <span class="brand-e">E</span>mmanuel<span class="brand-dot">.</span>
+      </a>
+      <div class="d-flex align-items-center gap-3 ms-auto">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+          <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+        </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+          aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="toggler-bar"></span>
+          <span class="toggler-bar"></span>
+          <span class="toggler-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="index.html#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link active" href="projects.html">Work</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#process">Process</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#testimonials">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#faq">FAQ</a></li>
+        </ul>
+        <a href="https://wa.me/2348055311844?text=Hi%20Emmanuel%2C%20I%27d%20like%20to%20discuss%20a%20website%20project%20with%20you."
+          class="btn btn-primary nav-cta" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-whatsapp me-2"></i>Book a Call
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="projects-hero">
+    <div class="projects-hero-glow" aria-hidden="true"></div>
+    <div class="container">
+      <a href="index.html" class="projects-hero-back">
+        <i class="bi bi-arrow-left"></i> Back to Home
+      </a>
+      <div class="section-label">Full Portfolio</div>
+      <h1>Every Project, <em>Every Result</em></h1>
+      <p>A complete look at the websites I've designed and built — from business sites and landing pages to e-commerce stores and full redesigns.</p>
+
+      <!-- Filter buttons -->
+      <div class="projects-filter" id="filterBar" role="group" aria-label="Filter projects by category">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="Business Website">Business</button>
+        <button class="filter-btn" data-filter="Portfolio">Portfolio</button>
+        <button class="filter-btn" data-filter="Landing Page">Landing Pages</button>
+        <button class="filter-btn" data-filter="E-Commerce">E-Commerce</button>
+        <button class="filter-btn" data-filter="Redesign">Redesign</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS GRID -->
+  <section class="projects-grid-section">
+    <div class="container">
+      <p class="project-count">Showing <span id="visibleCount">8</span> projects</p>
+
+      <div class="row g-4" id="projectsGrid">
+
+        <!-- PROJECT 1 — Featured (full row) -->
+        <div class="col-12" data-category="Business Website">
+          <article class="portfolio-card portfolio-card--featured reveal-up">
+            <div class="browser-mockup">
+              <div class="browser-chrome">
+                <div class="b-dots"><span class="b-dot b-dot--red"></span><span class="b-dot b-dot--yellow"></span><span class="b-dot b-dot--green"></span></div>
+                <div class="b-url-bar"><i class="bi bi-lock-fill b-lock"></i>lagosconsulting.com</div>
+              </div>
+              <div class="browser-screen">
+                <img src="assets/screenshots/project-1.jpg" alt="Lagos Consulting Firm website" class="browser-screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="browser-placeholder"><i class="bi bi-image"></i><span>Add screenshot: assets/screenshots/project-1.jpg</span></div>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <div class="featured-badge"><i class="bi bi-star-fill"></i> Featured Project</div>
+              <span class="portfolio-tag">Business Website</span>
+              <h3>Lagos Consulting Firm</h3>
+              <div class="portfolio-result"><i class="bi bi-graph-up-arrow"></i> 3× increase in enquiries within 60 days</div>
+              <p>A complete brand-aligned website built for a corporate consulting firm in Lagos. The brief was to move away from a dated look and position them as the premium option in their market. Clean layout, strong CTAs, and full SEO foundation.</p>
+              <div class="portfolio-tech">
+                <span class="tech-tag">HTML/CSS</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Bootstrap</span>
+                <span class="tech-tag">SEO</span>
+              </div>
+              <div class="portfolio-actions mt-3">
+                <a href="https://yourprojecturl.com" class="portfolio-view-link" target="_blank" rel="noopener noreferrer">
+                  <i class="bi bi-box-arrow-up-right"></i> View Live Project
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- PROJECT 2 -->
+        <div class="col-md-6 col-lg-4" data-category="Portfolio">
+          <article class="portfolio-card reveal-up delay-1">
+            <div class="browser-mockup">
+              <div class="browser-chrome">
+                <div class="b-dots"><span class="b-dot b-dot--red"></span><span class="b-dot b-dot--yellow"></span><span class="b-dot b-dot--green"></span></div>
+                <div class="b-url-bar"><i class="bi bi-lock-fill b-lock"></i>kunlephotography.com</div>
+              </div>
+              <div class="browser-screen">
+                <img src="assets/screenshots/project-2.jpg" alt="Creative Photographer portfolio" class="browser-screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="browser-placeholder"><i class="bi bi-image"></i><span>Add screenshot</span></div>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Portfolio</span>
+              <h3>Creative Photographer</h3>
+              <div class="portfolio-result"><i class="bi bi-graph-up-arrow"></i> 2× monthly client bookings</div>
+              <p>A stunning visual portfolio for a Lagos-based photographer — clean, gallery-forward, and built to attract premium clients.</p>
+              <div class="portfolio-tech"><span class="tech-tag">HTML/CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Lightbox</span></div>
+              <div class="portfolio-actions">
+                <a href="https://yourprojecturl.com" class="portfolio-view-link" target="_blank" rel="noopener noreferrer">
+                  <i class="bi bi-box-arrow-up-right"></i> View Project
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- PROJECT 3 -->
+        <div class="col-md-6 col-lg-4" data-category="Landing Page">
+          <article class="portfolio-card reveal-up delay-2">
+            <div class="browser-mockup">
+              <div class="browser-chrome">
+                <div class="b-dots"><span class="b-dot b-dot--red"></span><span class="b-dot b-dot--yellow"></span><span class="b-dot b-dot--green"></span></div>
+                <div class="b-url-bar"><i class="bi bi-lock-fill b-lock"></i>digitalcoursepro.com</div>
+              </div>
+              <div class="browser-screen">
+                <img src="assets/screenshots/project-3.jpg" alt="Online Course Launch landing page" class="browser-screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="browser-placeholder"><i class="bi bi-image"></i><span>Add screenshot</span></div>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Landing Page</span>
+              <h3>Online Course Launch</h3>
+              <div class="portfolio-result"><i class="bi bi-graph-up-arrow"></i> First cohort sold out in 7 days</div>
+              <p>A high-converting launch page for a digital course. Persuasive copy, clear hierarchy, and a focused single CTA drove exceptional conversion rates.</p>
+              <div class="portfolio-tech"><span class="tech-tag">HTML/CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">CRO</span></div>
+              <div class="portfolio-actions">
+                <a href="https://yourprojecturl.com" class="portfolio-view-link" target="_blank" rel="noopener noreferrer">
+                  <i class="bi bi-box-arrow-up-right"></i> View Project
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- PROJECT 4 -->
+        <div class="col-md-6 col-lg-4" data-category="E-Commerce">
+          <article class="portfolio-card reveal-up delay-3">
+            <div class="browser-mockup">
+              <div class="browser-chrome">
+                <div class="b-dots"><span class="b-dot b-dot--red"></span><span class="b-dot b-dot--yellow"></span><span class="b-dot b-dot--green"></span></div>
+                <div class="b-url-bar"><i class="bi bi-lock-fill b-lock"></i>nairo-style.com</div>
+              </div>
+              <div class="browser-screen">
+                <img src="assets/screenshots/project-4.jpg" alt="Fashion Boutique e-commerce store" class="browser-screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="browser-placeholder"><i class="bi bi-image"></i><span>Add screenshot</span></div>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">E-Commerce</span>
+              <h3>Fashion Boutique Store</h3>
+              <div class="portfolio-result"><i class="bi bi-graph-up-arrow"></i> Significant increase in online sales</div>
+              <p>A sleek online store for a fashion brand. Mobile-first, fast-loading, and designed with a premium look that matches the brand's positioning.</p>
+              <div class="portfolio-tech"><span class="tech-tag">HTML/CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Cart Integration</span></div>
+              <div class="portfolio-actions">
+                <a href="https://yourprojecturl.com" class="portfolio-view-link" target="_blank" rel="noopener noreferrer">
+                  <i class="bi bi-box-arrow-up-right"></i> View Project
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- PROJECT 5 -->
+        <div class="col-md-6 col-lg-4" data-category="Redesign">
+          <article class="portfolio-card reveal-up delay-1">
+            <div class="browser-mockup">
+              <div class="browser-chrome">
+                <div class="b-dots"><span class="b-dot b-dot--red"></span><span class="b-dot b-dot--yellow"></span><span class="b-dot b-dot--green"></span></div>
+                <div class="b-url-bar"><i class="bi bi-lock-fill b-lock"></i>primerealty.ng</div>
+              </div>
+              <div class="browser-screen">
+                <img src="assets/screenshots/project-5.jpg" alt="Real Estate Agency redesign" class="browser-screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="browser-placeholder"><i class="bi bi-image"></i><span>Add screenshot</span></div>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Redesign</span>
+              <h3>Real Estate Agency</h3>
+              <div class="portfolio-result"><i class="bi bi-graph-up-arrow"></i> 40% more contact form submissions</div>
+              <p>Full redesign of an outdated real estate site. Improved property listings UI, modern aesthetic, and an optimised conversion path.</p>
+              <div class="portfolio-tech"><span class="tech-tag">HTML/CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Bootstrap</span></div>
+              <div class="portfolio-actions">
+                <a href="https://yourprojecturl.com" class="portfolio-view-link" target="_blank" rel="noopener noreferrer">
+                  <i class="bi bi-box-arrow-up-right"></i> View Project
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- PROJECT 6 -->
+        <div class="col-md-6 col-lg-4" data-category="Business Website">
+          <article class="portfolio-card reveal-up delay-2">
+            <div class="browser-mockup">
+              <div class="browser-chrome">
+                <div class="b-dots"><span class="b-dot b-dot--red"></span><span class="b-dot b-dot--yellow"></span><span class="b-dot b-dot--green"></span></div>
+                <div class="b-url-bar"><i class="bi bi-lock-fill b-lock"></i>elitefinancials.ng</div>
+              </div>
+              <div class="browser-screen">
+                <img src="assets/screenshots/project-6.jpg" alt="Finance company website" class="browser-screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="browser-placeholder"><i class="bi bi-image"></i><span>Add screenshot</span></div>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Business Website</span>
+              <h3>Finance &amp; Investment Firm</h3>
+              <div class="portfolio-result"><i class="bi bi-graph-up-arrow"></i> Established credibility &amp; tripled enquiries</div>
+              <p>A corporate financial services website designed to convey trust, expertise, and authority — with a clear journey from landing to enquiry.</p>
+              <div class="portfolio-tech"><span class="tech-tag">HTML/CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">SEO</span></div>
+              <div class="portfolio-actions">
+                <a href="https://yourprojecturl.com" class="portfolio-view-link" target="_blank" rel="noopener noreferrer">
+                  <i class="bi bi-box-arrow-up-right"></i> View Project
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- PROJECT 7 -->
+        <div class="col-md-6 col-lg-4" data-category="Portfolio">
+          <article class="portfolio-card reveal-up delay-3">
+            <div class="browser-mockup">
+              <div class="browser-chrome">
+                <div class="b-dots"><span class="b-dot b-dot--red"></span><span class="b-dot b-dot--yellow"></span><span class="b-dot b-dot--green"></span></div>
+                <div class="b-url-bar"><i class="bi bi-lock-fill b-lock"></i>tobidesigns.co</div>
+              </div>
+              <div class="browser-screen">
+                <img src="assets/screenshots/project-7.jpg" alt="Graphic designer portfolio" class="browser-screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="browser-placeholder"><i class="bi bi-image"></i><span>Add screenshot</span></div>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Portfolio</span>
+              <h3>Graphic Designer Portfolio</h3>
+              <div class="portfolio-result"><i class="bi bi-graph-up-arrow"></i> Helped secure 3 brand deals</div>
+              <p>An elegant portfolio site for a graphic designer with a strong visual identity. Minimal, editorial, and easy for potential clients to navigate.</p>
+              <div class="portfolio-tech"><span class="tech-tag">HTML/CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">GSAP</span></div>
+              <div class="portfolio-actions">
+                <a href="https://yourprojecturl.com" class="portfolio-view-link" target="_blank" rel="noopener noreferrer">
+                  <i class="bi bi-box-arrow-up-right"></i> View Project
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- PROJECT 8 -->
+        <div class="col-md-6 col-lg-4" data-category="Landing Page">
+          <article class="portfolio-card reveal-up delay-1">
+            <div class="browser-mockup">
+              <div class="browser-chrome">
+                <div class="b-dots"><span class="b-dot b-dot--red"></span><span class="b-dot b-dot--yellow"></span><span class="b-dot b-dot--green"></span></div>
+                <div class="b-url-bar"><i class="bi bi-lock-fill b-lock"></i>beautylaunch.com</div>
+              </div>
+              <div class="browser-screen">
+                <img src="assets/screenshots/project-8.jpg" alt="Beauty product launch landing page" class="browser-screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="browser-placeholder"><i class="bi bi-image"></i><span>Add screenshot</span></div>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Landing Page</span>
+              <h3>Beauty Product Launch</h3>
+              <div class="portfolio-result"><i class="bi bi-graph-up-arrow"></i> 300+ pre-orders in first week</div>
+              <p>A product launch page built for maximum impact — vibrant visuals, countdown timer, and a frictionless pre-order flow that drove immediate results.</p>
+              <div class="portfolio-tech"><span class="tech-tag">HTML/CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Conversion Opt.</span></div>
+              <div class="portfolio-actions">
+                <a href="https://yourprojecturl.com" class="portfolio-view-link" target="_blank" rel="noopener noreferrer">
+                  <i class="bi bi-box-arrow-up-right"></i> View Project
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- PROJECT 9 -->
+        <div class="col-md-6 col-lg-4" data-category="Redesign">
+          <article class="portfolio-card reveal-up delay-2">
+            <div class="browser-mockup">
+              <div class="browser-chrome">
+                <div class="b-dots"><span class="b-dot b-dot--red"></span><span class="b-dot b-dot--yellow"></span><span class="b-dot b-dot--green"></span></div>
+                <div class="b-url-bar"><i class="bi bi-lock-fill b-lock"></i>abuja-dental.com</div>
+              </div>
+              <div class="browser-screen">
+                <img src="assets/screenshots/project-9.jpg" alt="Dental clinic website redesign" class="browser-screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="browser-placeholder"><i class="bi bi-image"></i><span>Add screenshot</span></div>
+              </div>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-tag">Redesign</span>
+              <h3>Dental Clinic</h3>
+              <div class="portfolio-result"><i class="bi bi-graph-up-arrow"></i> 55% increase in appointment bookings</div>
+              <p>Modernised a dated dental clinic site. Refreshed branding, streamlined navigation, and an online booking flow that immediately boosted appointments.</p>
+              <div class="portfolio-tech"><span class="tech-tag">HTML/CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Booking Integration</span></div>
+              <div class="portfolio-actions">
+                <a href="https://yourprojecturl.com" class="portfolio-view-link" target="_blank" rel="noopener noreferrer">
+                  <i class="bi bi-box-arrow-up-right"></i> View Project
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+      </div><!-- /row -->
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="projects-cta">
+    <div class="container">
+      <div class="section-label">Want Results Like These?</div>
+      <h2>Your Business Deserves a <em>Website That Works</em></h2>
+      <p>Every project you've seen here started with a single conversation. Let's have yours — no pressure, no obligation, just a clear plan for your website.</p>
+      <a href="https://wa.me/2348055311844?text=Hi%20Emmanuel%2C%20I%20just%20viewed%20your%20portfolio%20and%20I%27d%20love%20to%20discuss%20a%20website%20project."
+        class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-whatsapp me-2"></i>Start Your Project on WhatsApp
+      </a>
+      <div class="mt-3">
+        <a href="index.html" class="btn btn-ghost">
+          <i class="bi bi-arrow-left me-2"></i>Back to Main Site
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; <span id="footerYear"></span> Emmanuel Website Design. All rights reserved.</p>
+        <p class="footer-seo-text">Professional website designer · Business websites · Portfolio design · Landing pages · SEO web design</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/2348055311844?text=Hi%20Emmanuel%2C%20I%27d%20like%20to%20enquire%20about%20a%20website%20project."
+    class="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="Chat with Emmanuel on WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+    <span class="fab-tooltip">Chat on WhatsApp</span>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    // ── FILTER FUNCTIONALITY ──
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards      = document.querySelectorAll('#projectsGrid [data-category]');
+    const countEl    = document.getElementById('visibleCount');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        let visible = 0;
+
+        cards.forEach(card => {
+          const match = filter === 'all' || card.dataset.category === filter;
+          card.style.display = match ? '' : 'none';
+          if (match) visible++;
+        });
+
+        countEl.textContent = visible;
+      });
+    });
+  </script>
+</body>
+</html>
